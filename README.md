@@ -21,7 +21,7 @@ Estou usando: **AI Job Market Trends 2022-2026** (Kaggle) Por quê? Porque é re
 ## Roadmap 
 
 - [x] Baixar e explorar dados
-- [ ] Fundamentos de Estatística
+- [x] Fundamentos de Estatística
 - [ ] Regressão Linear
 - [ ] Modelos de Machine Learning 
 - [ ] Interpretabilidade
