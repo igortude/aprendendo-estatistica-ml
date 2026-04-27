@@ -16,7 +16,7 @@ Cada notebook segue este padrão:
 
 ## DataSet
 
-Estou usando: **AI Job Market Trends 2022-2026** (Kaggle).
+x # Verifique Pythonpython3 --version​# Verifique Jupyterjupyter --version​# Se não tiver, instale:pip3 install pandas numpy matplotlib seaborn jupyter scikit-learn2️⃣ Clone ou baixe este repositório:Bash​git clone https://github.com/seu_usuario/aprendendo-estatistica-ml.gitcd aprendendo-estatistica-ml3️⃣ Crie um ambiente virtual (recomendado):Bash​python3 -m venv .venvsource .venv/bin/activate  # Linux/Mac# ou.venv\Scripts\activate  # Windows4️⃣ Instale as dependências:Bash​pip install -r requirements.txt5️⃣ Abra o Jupyter:Bash​jupyter notebook6️⃣ Comece pelo Notebook 00:Vá em 01_Fundamentos_Estatistica/ e abra 00_Python_Basico_Para_Ciencia_de_Dados.ipynb​📚 Ordem RecomendadaSIGA ESSA ORDEM. Não pule etapas.​Nível 1: Fundamentos ​1️⃣ Notebook 00: Python Básico + Estatística Descritiva   └─ Tempo: ~3-4 horas   └─ O que aprende: Explorar dados, calcular estatísticas   └─ Resultado: Você entende o que são média, mediana, desvio padrão​2️⃣ Notebook 01: Análise Exploratória Avançada (EDA)   └─ Tempo: ~3-4 horas   └─ O que aprende: Correlação, visualizações, seleção de variáveis   └─ Resultado: Você sabe qual variável influencia o resultadoNível 2: Modelagem ​3️⃣ Notebook 02: Regressão Linear   └─ Tempo: ~3-4 horas   └─ O que aprende: Treinar primeiro modelo, fazer previsões   └─ Resultado: Você consegue prever um valor​4️⃣ Notebook 03: Comparação de Modelos   └─ Tempo: ~4-5 horas   └─ O que aprende: Random Forest, XGBoost, validação   └─ Resultado: Você sabe qual modelo é melhor para cada situaçãoNível 3: Interpretabilidade ​5️⃣ Notebook 04: Interpretabilidade & Insights   └─ Tempo: ~2-3 horas   └─ O que aprende: Por que o modelo prevê X, SHAP values   └─ Resultado: Você consegue explicar as predições💡 Como Usar os Notebooks✅ O Jeito CertoLeia a explicação no início de cada célulaEntenda o código (está comentado)Rode a célula (Shift + Enter)Veja o resultadoResponda as perguntas no finalNão copie e cola → Digita ao lado (ajuda o aprendizado!)❌ O Jeito ErradoCopiar e colar códigoRodar tudo de uma vezNão entender o que fazPular para o próximo notebookFicar perdido🎯 Estrutura de Cada NotebookCada notebook segue este padrão:┌─────────────────────────────────────────┐│ NOTEBOOK X: Nome                        │├─────────────────────────────────────────┤│ 📝 OBJETIVO (o que você vai aprender)   ││                                         ││ CÉLULA 1: Importações e Setup           ││ CÉLULA 2: Conceito Teórico              ││ CÉLULA 3: Código Prático                ││ CÉLULA 4: Visualização                  ││ ...                                     ││ ❓ PERGUNTAS (para você responder)      │└─────────────────────────────────────────┘🤔 Dúvidas FrequentesP: "Preciso saber muita matemática?"R: Não! Cada conceito é explicado do zero.​Média = somar tudo e dividir pela quantidadeDesvio Padrão = mede como os dados variamCorrelação = como duas variáveis se relacionamSe uma fórmula aparecer, tem explicação junto.​P: "Posso pular o Notebook 00?"R: NÃO! O Notebook 00 é essencial porque:Ensina o Python mínimo necessárioExplica conceitos que você vai usar depoisPrática ajuda a fixarSe você pular, vai se perder no Notebook 02.​P: "Quanto tempo leva?"R: Depende:Assistindo aulas: ~20 horas (tudo)Estudando sozinho: ~40-50 horas (mais tempo para entender)Já tem experiência: ~15 horasNão corre! Qualidade > Velocidade.​P: "Posso rodar tudo de uma vez?"R: Você pode, mas não vai aprender. A ideia é:Entender cada conceitoFazer as perguntasModificar o código (experimenta!)Ver o que mudaRodar tudo de uma vez = passar por uma estação de trem sem olhar nada.​P: "E se eu ficar preso em algo?"R: Abra uma issue no GitHub!​Descreva seu problemaCole o erroDiga qual notebook/célulaVou ajudar.​📊 Checklist: Pronto Para Começar? Python 3.10+ instalado Jupyter instalado Repositório clonado Ambiente virtual criado Dataset (ai-job-market.csv) em dados/ Jupyter rodando Primeiro notebook abertoSe todos os ✅, você está pronto!​🚀 Comece AGORAVá até 01_Fundamentos_Estatistica/​Abra: 00_Python_Basico_Para_Ciencia_de_Dados.ipynb​Na primeira célula, coloque:Python​print("Olá! Estou pronto para aprender!")Aperte Shift + Enter​Se disser "Olá! Estou pronto para aprender!" → Você está 100% pronto! 🎉​📞 Precisa de Ajuda?Leia o README.md (visão geral do projeto)Veja as explicações no notebook (tá tudo comentado)Abra uma issue (GitHub)Estude os recursos adicionais (recursos_adicionais/)🎓 Dica Final"O melhor jeito de aprender é fazendo."​Então:✅ Faça o código✅ Modifique o código (experimente!)✅ Quebre o código (entenda os erros)✅ Recrie do zero (de cabeça)Isso é aprendizado real.​Bem-vindo ao mundo da Ciência de Dados! 🚀​Vamos aprender juntos! 📚​bash
 
 **Por quê?**
 
@@ -36,7 +36,7 @@ Estou usando: **AI Job Market Trends 2022-2026** (Kaggle).
 
 - [x] Carregar Dados com pd.read_csv()
 
-- [x] Explorar estrutura (shape, info, columns, dtypes)
+- [x] Explorar estrutura do Dataset (shape, info, columns, dtypes)
 
 - [x] Fundamentos de Estatística
 
@@ -70,19 +70,19 @@ Estou usando: **AI Job Market Trends 2022-2026** (Kaggle).
 
 - [x] Analisar Year vs Salary (correlação temporal vs casual)
 
-- [x] Explorar Experience_Level:
+- [x] Exploraração - Experience_Level (nível de experiência):
 
   - Entry vs Mid vs Senior
   - Diferença de 270.9% (MUITO FORTE)
   - Visualizar com Boxplot
 
-- [x] Explorar Country:
+- [x] Exploraração - Country (país):
 
   - USA vs India vs demais países
   - Diferença de 226.0% (MUITO FORTE)
   - Visualizar com Violin Plot
 
-- [x] Explorar Job_Title:
+- [x] Explorar Job_Title (cargo):
 
   - Diferença de apenas 6.5% (FRACO)
   - Descartável para o modelo
