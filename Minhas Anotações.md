@@ -66,7 +66,31 @@ Bom, imagine que se quiséssemos saber a opinião de todas as pessoas no Brasil 
 
 *Como os dados se distribuem?*
 
-A forma mais famosa e importante é a **Curva em Sino** (**Distribuição Normal ou Gaussiana**). é definida somente por dois parâmetros: I) **média** (onde fica o centro da curva), e o II) **desvio padrão**, que diz o quão espalhados estão os dados em volta do centro.
+Tabelas de frequência - organização dos dados - Utilizadas para descrever a distribuição de **variáveis qualitativas**. 
+
+​	a) Frequência Absoluta:  "quantas vezes, aquele nível daquela categoria, aparece no dataset". É basicamente uma contagem de quantas vezes aquela categoria (variável) aparece no dataset.
+
+​	b) Frequência Relativa (ou proporção): é uma maneira de relativizar a frequência absoluta através dos 'totais'. É uma proporção ou taxa. 
+
+​	c) Frequência Absoluta Acumulada
+
+![image-20260427144424307](/home/igor/.var/app/io.typora.Typora/config/Typora/typora-user-images/image-20260427144424307.png)
+
+
+
+​	d) Frequência Relativa Acumulada;
+
+![image-20260427144606771](/home/igor/.var/app/io.typora.Typora/config/Typora/typora-user-images/image-20260427144606771.png)
+
+
+
+--
+
+![image-20260427145842301](/home/igor/.var/app/io.typora.Typora/config/Typora/typora-user-images/image-20260427145842301.png)
+
+
+
+​																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																												A forma mais famosa e importante é a **Curva em Sino** (**Distribuição Normal ou Gaussiana**). é definida somente por dois parâmetros: I) **média** (onde fica o centro da curva), e o II) **desvio padrão**, que diz o quão espalhados estão os dados em volta do centro.
 
 Regra Empírica: Se um conjunto de dados segue uma distribuição normal
 
@@ -74,7 +98,7 @@ Regra Empírica: Se um conjunto de dados segue uma distribuição normal
 
 exemplo: *Altura de homens adultos.*
 
-* 68% dos dados estão a 1 desvio-padrão da média;
+* 68% dos dados estão a 1 desvio-padrão da média;																																																																				
 * 95% dos dados estão a 2 desvios-padrão da média;
 * 99,7% dos dados estão a 3 desvios-padrão da média;
 
@@ -100,4 +124,17 @@ Contudo, quantos se tem poucos dados, ou quando o que importa é modelar o tempo
   * **Weibull**:  É mais flexível. Diz que a chance de falha, pode aumentar com o tempo.
     * Consegue modelar o tempo até a falha de um equipamento. A falha acontece mais brevemente conforme a peça vai envelhecendo.
 
- 
+ 				
+
+**Amostragem e Inferência**
+
+***População vs Amostra > Teorema Central do Limite > Medindo Incerteza > Técnica do Bootstrap > Intervalos de Confiança***
+
+**I) População vs Amostra:** A população é o grupo inteiro que se quer estudar. (Ex: todos os eleitores do país). Essa amostra tem que ser representativa. 
+
+**II) Teorema Central do Limite** (**TCL**): Não importa o formato da distribuição de dados originais, pode ser algo completamente esquisito. A distribuição da média amostral se torna normal com amostras grandes, não importando a distribuição original.
+
+**Medindo Incerteza**
+
+**Erro-Padrão**: Desvio padrão de uma estatística amostral sobre muitas amostras 
+
