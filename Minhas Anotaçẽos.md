@@ -6,14 +6,14 @@ Basicamente existem 4 tipos de variáveis.
   - *Nominal*: Categorias sem ordem natural - EX: gênero, cor, cidade
   - *Ordinal*: Categorias com ordem natural - nível de ensino, satisfação...
 - **Quantitativas **(números)
-  * Discreta: Valores de contagem
+  * *Discreta*: Valores de contagem
     * Número de cliques, quantidade de produtos em um carrinho..
-  * Contínua: Valores de mensuração
+  * *Contínua*: Valores de mensuração
     * Peso, Salário, Temperatura
 
-O tipo de dados é importante para ajudar a determinar o tipo de exposição visual, análise de dados ou modelo. Ou seja, a identificação do tipo de variável não é só um detalhe técnico, é necessário por inúmeros motivos, é o que vai "dizer" o que será usado. Logo, É o que define o tipo de gráfico será utilizado, qual teste estatístico aplicar, qual algoritmo de machine learning funcionará melhor.
+O tipo de dados *é importante para ajudar a determinar o tipo de exposição visual, análise de dados ou modelo*. Ou seja, a identificação do tipo de variável não é só um detalhe técnico, é necessário por inúmeros motivos, é o que vai "dizer" o que será usado. Logo, É o que define o tipo de gráfico será utilizado, qual teste estatístico aplicar, qual algoritmo de machine learning funcionará melhor.
 
-Medidas da Estatística Descritiva
+**Medidas da Estatística Descritiva**
 
 * **Média**: Soma de todos os valores, dividida pelo número de valores.
 
@@ -50,3 +50,54 @@ Agora, falamos sobre **RANDOM FOREST** que é um algoritmo de ML, que ao invés 
 
 Indo além do RF, temos o **Boosting**, com seu algoritmo **XGBoost**, que ao invés de construir centenas, milhares de árvores para a previsão, constrói uma árvore após a outra, focando nos erros apresentados na anterior, refinando o resultado final.
 
+
+
+**Probabilidade** - A linguagem da incerteza
+
+Bom, imagine que se quiséssemos saber a opinião de todas as pessoas no Brasil sobre algo, isso seria a população. Ou seja, é impossível perguntar à todo mundo. Então, pegamos uma amostra da população (um grupo menor) e utiliza-se essa amostra para tentar entender o todo, e é aí que nasce a probabilidade. 
+
+É o alicerce matemático sobre o qual toda a inferência estatística está construída. 
+
+**Teorema de Bayes**; Espécie de máquina de aprendizado. Começamos com uma crença inicial, e o teorema faz o trabalho de recalcular tudo e entrega uma nova crença com dados atualizados e mais precisos. E essa lógica está presente em praticamente todo o lugar. EX: Sugestão de filmes do NetFlix (baseado em filmes que você já assistiu). Filtro de SPAM de e-mail, baseado no estudo das palavras contidas...
+
+* **Probabilidade condicional;** Probabilidade do evento A ocorrer, dado que o evento B já ocorreu. É representada por P(A|B). Ex: Qual a probabilidade de um cidadão que comprou um produto de marca X, comprar um mesmo produto de marca Y?
+
+
+
+*Como os dados se distribuem?*
+
+A forma mais famosa e importante é a **Curva em Sino** (**Distribuição Normal ou Gaussiana**). é definida somente por dois parâmetros: I) **média** (onde fica o centro da curva), e o II) **desvio padrão**, que diz o quão espalhados estão os dados em volta do centro.
+
+Regra Empírica: Se um conjunto de dados segue uma distribuição normal
+
+ **>** **68-95-99,7%** **<**
+
+exemplo: *Altura de homens adultos.*
+
+* 68% dos dados estão a 1 desvio-padrão da média;
+* 95% dos dados estão a 2 desvios-padrão da média;
+* 99,7% dos dados estão a 3 desvios-padrão da média;
+
+Poder de previsão imenso!
+
+Porém, muitos dados do mundo real como a renda das pessoas, não seguem essa curva de sino perfeitamente. Entra o conceito da **Teorema Central do Limite**, que diz que mesmo que os dados originais tenham distribuição completamente esquisita, se tirarmos diversas amostras e em seguida a média dessas amostras,  essas médias irão formar uma **distribuição normal perfeita**. (ex:  modelagem de contínuos, regressão. - Alturas, erros, notas)
+
+**CONTANDO SUCESSOS**
+
+**Binomial**: Modela o número de sucessos em 'n' tentativas. Ou seja,  lida com um número fixo de tentativas. (Taxas de conversão - Testes A/B - Cliques em anúncios)
+
+​	ex: Cliques, vendas.
+
+**Poisson**: Modela o número de eventos em um intervalo. Ou seja, não tem um número fixo, conta quantos eventos acontecem em um intervalo de tempo ou espaço. (Contagens por intervalo - Acessos/minuto a um site)
+
+​	ex: Acessos por minuto; Chamadas por hora..
+
+Contudo, quantos se tem poucos dados, ou quando o que importa é modelar o tempo até que uma coisa aconteça?
+
+* **Distribuição t de Student**: Semelhante a Normal, mas com 'caudas mais largas', refletindo a maior incerteza de amostras pequenas. (Testes t, Regressão - Comparar médias de grupos).
+  * **Exponencial**: excelente para medir o tempo entre eventos. Parte do princípio que o tempo de um evento acontecer, é sempre o mesmo.
+    * ex: tempo entre a chegada de 2 clientes numa fila.
+  * **Weibull**:  É mais flexível. Diz que a chance de falha, pode aumentar com o tempo.
+    * Consegue modelar o tempo até a falha de um equipamento. A falha acontece mais brevemente conforme a peça vai envelhecendo.
+
+ 
