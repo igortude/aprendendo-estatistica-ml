@@ -57,3 +57,6 @@ lista = [
 df = pd.DataFrame(lista, columns=['Nome','Idade','Nota'])
 print(df)
 
+Neste caso, a lista ***lista*** é uma matriz de valores que precisam ser separados em colunas.
+
+Também é possível criar m DataFrame a partir de uma tabela CSV ou Excel. Isso é muito útil quando você precisar trabalhar com grandes conjuntos de dados.
