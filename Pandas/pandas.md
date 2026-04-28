@@ -37,7 +37,7 @@ print(df)
 
 Isso gerará um DataFrame com as seguintes colunas:
 
-![image-20260428183351973](/home/igor/.var/app/io.typora.Typora/config/Typora/typora-user-images/image-20260428183351973.png)
+![image-20260428183351973](/home/igor/Documentos/GIT/aprendendo-estatistica-ml/assets/img1_pandas.png)
 
 Valendo a ressalva de que é possível também, criar com uma lista, ao invés de um dicionário. No exemplo anterior, o dicionário ***data*** é composto por chaves Nome, Idade, Nota, cada uma com uma lista de valores correspondentes.
 
