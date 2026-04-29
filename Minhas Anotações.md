@@ -22,12 +22,43 @@ Sem esquecer dos tipos
 **Medidas da Estatística Descritiva**
 
 * **Média**: Soma de todos os valores, dividida pelo número de valores.
-
   * *Ponto fraco*: muito sensível a outliers (ou seja, valores extremos)
-
+  
 * **Mediana**: É o valor comum, do 'centro da fila de valores', ou seja, medida mais robusta, por não ter impacto direto com *outliers* (*observações extremas aos valores)*.
 
 * **Moda**: É a variável mais frequente em um conjunto de dados. Um conjunto de dados pode não ter moda, pode ter uma moda (unimodal) ou muitas modas (multimodal).
+
+> Histograma: é a representação visual de uma frequência ou frequência relativa da distribuição de dados **quantitativos**. 
+>
+> ![image-histograma](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/histograma.png)
+
+Em se tratando de Tendência central e simetria
+
+![image-histograma](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/tendencia_simetria.png)
+
+*Ao olhar para o gráfico, e identificar que a **média > mediana**, é possível saber que há uma assimetria à direita (**assimétrica positiva)** e vice-versa, o contrário seria **assimetria negativa**. A **moda** é sempre o pico, a mediana, corta ao meio.*
+
+>  Detectando outliers: Calcula a amplitude interquartil (Q1- Q3) com a fórmula: 
+
+IQR = Q3-Q1
+
+Calcula 1,5 * IQR
+
+Computa o limite inferior: Q1 - 1,5 * IQR
+
+Computa também o limite superior: Q3 + 1,5 * IQR
+
+*Qualquer valor maior que o limite superior ou menor que o limite inferior é um **outlier***.
+
+Os outliers são identificados por * no box plot
+
+![image-boxplot](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/boxplot.png)
+
+E para não haver dúvidas, a mediana é Q2 (segundo quartil)
+
+> ===================================================================================
+
+
 
 * **Variabilidade**: é necessário saber o quão espalhados estão os dados, então, fica no centro da estatística. Pense assim, 2 cidades que tem a temperatura média igual no ano, porém, uma com um verão super quente e a outra, com um inverno absurdamente congelante. Ou seja, o que muda? É exatamente a **variabilidade**
 
