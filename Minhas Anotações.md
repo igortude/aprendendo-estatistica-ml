@@ -54,25 +54,49 @@ Os outliers são identificados por * no box plot
 
 ![image-boxplot](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/boxplot.png)
 
-E para não haver dúvidas, a mediana é Q2 (segundo quartil)
+E para não haver dúvidas, a mediana é o Q2 (ou segundo quartil).
 
-> ===================================================================================
+> ==============SUMÁRIO DE 5 NÚMEROS==========================
 
+**Medidas de Dispersão**
 
+Mostram a extensão ou variabilidade de um conjunto de dados. 
 
-* **Variabilidade**: é necessário saber o quão espalhados estão os dados, então, fica no centro da estatística. Pense assim, 2 cidades que tem a temperatura média igual no ano, porém, uma com um verão super quente e a outra, com um inverno absurdamente congelante. Ou seja, o que muda? É exatamente a **variabilidade**
+**Variabilidade**: é necessário saber o quão espalhados estão os dados, então, fica no centro da estatística. Pense assim, 2 cidades que tem a temperatura média igual no ano, porém, uma com um verão super quente e a outra, com um inverno absurdamente congelante. Ou seja, o que muda? É exatamente a **variabilidade**
 
-  * uma das principais formas de  medir essa dispersão é a **VARIÂNCIA**. Então, o que ela faz é calcular a distância de cada ponto até a média, eleva ao quadrado e depois tira uma média de tudo isso. Se o número dessa média for alto, significa que os dados estão bem espalhados.
+As medidas de dispersão mais comuns são:
 
+* **Amplitude**: Calcula-se: Valor máximo - Valor mínimo ; é a medida mais simples. Não é uma boa medida quando usada sozinha, já que é computada usando apenas dois valores.
+* **Variância**: *Medida baseada na média.* A distância que um valor está da média é seu **desvio**; a variância é a média de **desvios ao quadrado**.
+  * Então, o que ela faz é calcular a distância de cada ponto até a média, eleva ao quadrado e depois tira uma média de tudo isso. Se o número dessa média for alto, significa que os dados estão bem espalhados.
     * Porém, também apresenta um problema. A medida é "ao quadrado", e pense que se estivermos medindo um salário em REAIS, a variância seria um número absurdamente grande. Fica difícil de interpretar.
+* **Desvio-Padrão**:  é a raiz quadrada da variância, ou seja, trás a unidade dos dados, inicialmente ao quadrado, para unidade original dos dados, facilitando a interpretação.
 
-    E é onde entra o **DESVIO PADRÃO**, que é nada mais nada menos a raiz quadrada da variância, ou seja, trás a unidade dos dados, inicialmente ao quadrado, para unidade original dos dados, facilitando a interpretação.
+**Covariância** é uma medida numérica que descreve a direção da relação linear entre duas variáveis
 
+Covariância > 0: relação linear positiva
 
+Covariância < 0: relação linear negativa
 
-**Diagrama de Dispersão**
+Covariância = 0: sem relação linear
 
-Coloca-se uma variável no eixo x e outra no eixo y e marca-se um ponto para cada observação. "De cara", já é possível notar se há alguma tendência. Se os pontos sobem juntos, a **relação** é **POSITIVA**, se um sobe e o outro desce, a **relação** é **NEGATIVA.**
+Ou seja, coloca-se uma variável no eixo x e outra no eixo y e marca-se um ponto para cada observação. "De cara", já é possível notar se há alguma tendência. Se os pontos sobem juntos, a **relação** é **POSITIVA**, se um sobe e o outro desce, a **relação** é **NEGATIVA.**
+
+Correlação, vem da covariância, o coeficiente de correlação descreve não somente a direção mas também o grau da relação. Sempre será entre 1 e -1 ou 100% -100%
+
+Correlação > 0: relação linear positiva
+
+Correlação < 0: relação linear negativa
+
+Correlação=0: sem relação linear
+
+Correlação=1: relação linear positiva forte
+
+Correlação=-1: relação linear negativa forte
+
+**r é o coeficiente de correlação.**
+
+![image-correlacao](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/correlacao.png)
 
 O modelo matemático para este caso é a **regressão linear simples** ( *Y= a+bX+e* ). Nada mais é do que a fórmula de uma reta que tenta passar o mais próximo possível de todos aqueles pontos do gráfico. E tem duas finalidades:
 
