@@ -13,13 +13,21 @@ Basicamente existem 4 tipos de variáveis.
 
 O tipo de dados *é importante para ajudar a determinar o tipo de exposição visual, análise de dados ou modelo*. Ou seja, a identificação do tipo de variável não é só um detalhe técnico, é necessário por inúmeros motivos, é o que vai "dizer" o que será usado. Logo, É o que define o tipo de gráfico será utilizado, qual teste estatístico aplicar, qual algoritmo de machine learning funcionará melhor.
 
+Sem esquecer dos tipos
+
+* **Temporais**: que diz respeito a tempo. Data, mês, ano, dia...
+
+* **Geoespaciais**: associados a localizações geográficas.
+
 **Medidas da Estatística Descritiva**
 
 * **Média**: Soma de todos os valores, dividida pelo número de valores.
 
-  * Ponto fraco: muito sensível a outliers (ou seja, valores extremos)
+  * *Ponto fraco*: muito sensível a outliers (ou seja, valores extremos)
 
-* **Mediana**: É o valor comum, do 'centro da fila de valores', ou seja, medida mais robusta, por não ter impacto direto com outliers.
+* **Mediana**: É o valor comum, do 'centro da fila de valores', ou seja, medida mais robusta, por não ter impacto direto com *outliers* (*observações extremas aos valores)*.
+
+* **Moda**: É a variável mais frequente em um conjunto de dados. Um conjunto de dados pode não ter moda, pode ter uma moda (unimodal) ou muitas modas (multimodal).
 
 * **Variabilidade**: é necessário saber o quão espalhados estão os dados, então, fica no centro da estatística. Pense assim, 2 cidades que tem a temperatura média igual no ano, porém, uma com um verão super quente e a outra, com um inverno absurdamente congelante. Ou seja, o que muda? É exatamente a **variabilidade**
 
@@ -33,7 +41,7 @@ O tipo de dados *é importante para ajudar a determinar o tipo de exposição vi
 
 **Diagrama de Dispersão**
 
-Coloca-se uma variável no eixo x e outra no eixo y e marca-se um ponto para cada observação. "De cara", já é possível notar se há alguma tendência. Se os pontos sobem juntos, a relação é **POSITIVA**, se um sobe e o outro desce, a relação é **NEGATIVA.**
+Coloca-se uma variável no eixo x e outra no eixo y e marca-se um ponto para cada observação. "De cara", já é possível notar se há alguma tendência. Se os pontos sobem juntos, a **relação** é **POSITIVA**, se um sobe e o outro desce, a **relação** é **NEGATIVA.**
 
 O modelo matemático para este caso é a **regressão linear simples** ( *Y= a+bX+e* ). Nada mais é do que a fórmula de uma reta que tenta passar o mais próximo possível de todos aqueles pontos do gráfico. E tem duas finalidades:
 
@@ -124,7 +132,7 @@ Contudo, quantos se tem poucos dados, ou quando o que importa é modelar o tempo
   * **Weibull**:  É mais flexível. Diz que a chance de falha, pode aumentar com o tempo.
     * Consegue modelar o tempo até a falha de um equipamento. A falha acontece mais brevemente conforme a peça vai envelhecendo.
 
- 				
+ 			​	
 
 **Amostragem e Inferência**
 

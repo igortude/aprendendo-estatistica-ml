@@ -27,3 +27,17 @@ print(df)
 
 # df = pd.DataFrame(lista, columns=['Nome','Idade','Nota'])
 # print(df)
+
+import pandas as pd
+lista = {
+ 'Nome' : ['Igor','Raissa'],
+ 'Idade': [38,38],
+'Estado Civil': ['casado', 'casado'],
+
+'Endereco': ['r.lala', 'r.baba'],
+'CEP': [12345, 78899]
+}
+
+df = pd.DataFrame(lista)
+print(df)
+
