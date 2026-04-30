@@ -72,7 +72,7 @@ As medidas de dispersão mais comuns são:
     * Porém, também apresenta um problema. A medida é "ao quadrado", e pense que se estivermos medindo um salário em REAIS, a variância seria um número absurdamente grande. Fica difícil de interpretar.
 * **Desvio-Padrão**:  é a raiz quadrada da variância, ou seja, trás a unidade dos dados, inicialmente ao quadrado, para unidade original dos dados, facilitando a interpretação.
 
-**Covariância** é uma medida numérica que descreve a direção da relação linear entre duas variáveis
+**Covariância** é uma medida numérica que descreve a direção da relação linear entre duas variáveis. Em outras palavras é a relação estatística entre duas variáveis. O objetivo do estudo da correlação é determinar (mensurar) o grau de relacionamento entre duas variáveis.
 
 Covariância > 0: relação linear positiva
 
@@ -82,7 +82,7 @@ Covariância = 0: sem relação linear
 
 Ou seja, coloca-se uma variável no eixo x e outra no eixo y e marca-se um ponto para cada observação. "De cara", já é possível notar se há alguma tendência. Se os pontos sobem juntos, a **relação** é **POSITIVA**, se um sobe e o outro desce, a **relação** é **NEGATIVA.**
 
-Correlação, vem da covariância, o coeficiente de correlação descreve não somente a direção mas também o grau da relação. Sempre será entre 1 e -1 ou 100% -100%
+Correlação, vem da covariância, o coeficiente de correlação descreve não somente a direção mas também o grau da relação. Sempre será entre 1 e -1 (ou 100% -100%)
 
 Correlação > 0: relação linear positiva
 
@@ -101,21 +101,30 @@ Correlação=-1: relação linear negativa forte
 O modelo matemático para este caso é a **regressão linear simples** ( *Y= a+bX+e* ). Nada mais é do que a fórmula de uma reta que tenta passar o mais próximo possível de todos aqueles pontos do gráfico. E tem duas finalidades:
 
 * **Explicação**: entender o relacionamento geral entre variáveis. Para entender a força e relação entre as variáveis, observa-se o coeficiente.
+
 * **Previsão**: Adivinhar o valor de Y para um dado que não vimos antes.
 
-
-
-**Algoritmos de Machine Learning**
-
-Uma das tarefas mais comuns no mundo do ML é a classificação, que nada mais é do que a resposta de SIM/NÃO, com base nos dados. (Este e-mail é spam? SIM/NÃO ; Este cliente vai cancelar a assinatura? SIM/NÃO...).
-
-Agora, falamos sobre **RANDOM FOREST** que é um algoritmo de ML, que ao invés de construir um modelo robusto, ele cria inúmeros de modelos mais simples, que observam parte da amostra dos dados, ou seja, vai repetindo o processo até que a floresta esteja pronta para a combinação das previsões de todas as árvores, e aí, há uma votação para a predição final.
-
-Indo além do RF, temos o **Boosting**, com seu algoritmo **XGBoost**, que ao invés de construir centenas, milhares de árvores para a previsão, constrói uma árvore após a outra, focando nos erros apresentados na anterior, refinando o resultado final.
+  
 
 
 
 **Probabilidade** - A linguagem da incerteza
+
+É a análise matemática de um fenômeno aleatório (chamado de experimento). Aleatório neste sentido, significa que os resultados individuais de um processo são incertos, mas há um padrão de resultados no longo prazo.
+
+**Probabilidade x Estatística**
+
+**Probabilidade: os parâmetros da população são conhecidos.**
+
+**Estatística: os parâmetros da população são desconhecidos.**
+
+
+
+**Espaço Amostral (S)**
+
+um espaço amostral (S) de um experimento inclui todos os resultados possíveis de um experimento.
+
+Evento
 
 Bom, imagine que se quiséssemos saber a opinião de todas as pessoas no Brasil sobre algo, isso seria a população. Ou seja, é impossível perguntar à todo mundo. Então, pegamos uma amostra da população (um grupo menor) e utiliza-se essa amostra para tentar entender o todo, e é aí que nasce a probabilidade. 
 
@@ -161,7 +170,7 @@ Regra Empírica: Se um conjunto de dados segue uma distribuição normal
 
 exemplo: *Altura de homens adultos.*
 
-* 68% dos dados estão a 1 desvio-padrão da média;																																																																				
+* 68% dos dados estão a 1 desvio-padrão da média																																																																		
 * 95% dos dados estão a 2 desvios-padrão da média;
 * 99,7% dos dados estão a 3 desvios-padrão da média;
 
@@ -201,3 +210,12 @@ Contudo, quantos se tem poucos dados, ou quando o que importa é modelar o tempo
 
 **Erro-Padrão**: Desvio padrão de uma estatística amostral sobre muitas amostras 
 
+
+
+**Algoritmos de Machine Learning**
+
+Uma das tarefas mais comuns no mundo do ML é a classificação, que nada mais é do que a resposta de SIM/NÃO, com base nos dados. (Este e-mail é spam? SIM/NÃO ; Este cliente vai cancelar a assinatura? SIM/NÃO...).
+
+Agora, falamos sobre **RANDOM FOREST** que é um algoritmo de ML, que ao invés de construir um modelo robusto, ele cria inúmeros de modelos mais simples, que observam parte da amostra dos dados, ou seja, vai repetindo o processo até que a floresta esteja pronta para a combinação das previsões de todas as árvores, e aí, há uma votação para a predição final.
+
+Indo além do RF, temos o **Boosting**, com seu algoritmo **XGBoost**, que ao invés de construir centenas, milhares de árvores para a previsão, constrói uma árvore após a outra, focando nos erros apresentados na anterior, refinando o resultado final.
