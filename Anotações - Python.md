@@ -176,3 +176,82 @@ df.mean()
 
 |	  └─ Nome da função (mean = média) 
 └──── Objeto que vai usar (df = nosso DataFrame)
+
+***Funções com parâmetro***
+
+df.head(10)
+
+```
+Mostra as 10 primeiras linhas do DataFrame
+```
+
+*head* é a função (mostrar início)
+
+*10* é o parâmetro (quantas linhas)
+
+
+
+**DIFERENÇA** entre .mean() e .mean
+
+se eu uso df.mean() isto apenas **executa a função**
+
+df.mean só aponta para a função, mas não executa.
+
+OU SEJA, é necessário dos parênteses () para **executar** uma função.
+
+
+
+**O que é um parâmetro?**
+
+Parâmetro é uma CONFIGURAÇÃO que você passa para uma função.
+
+```
+plt.hist(data, bins=30)
+```
+
+data = o que você quer desenhar
+
+bins=30 = parâmetro (quantas barras no histograma). Ou seja, se você alterasse para bins=10, seriam 10 barras ao invés de 30.
+
+
+
+Agora para fixar, sem olhar em nada do material, responda:
+```
+O que é uma Biblioteca Python?
+Como deve ser feito para acessar uma coluna?
+O que é um DataFrame?
+Qual a diferença entre df.mean() e df.mean?
+O que é parâmetro?
+```
+
+Após responder, verifique se acertou! Caso contrário, volte e revise o material! Teve dúvida? Volte e revise o material!
+
+
+
+*** ESTATÍSTICA x CÓDIGO***
+
+Estatística
+
+```
+"Qual é a média dos salários?"
+"Qual é o desvio padrão?"
+"Qual é a correlação entre X e Y?"
+```
+
+Código
+
+```
+df['Salary_USD'].mean()
+df['Salary_USD'].std()
+df['X'].corr(df['Y'])
+```
+
+O código é só a FERRAMENTA para calcular a estatística. Já a estatística é o **conceito**
+
+Então, dicas:
+
+* Aprender o conceito estatístico (ex: "o que é média?")
+* Aprender porque é preciso? (ex:"porque calcular média?")
+* Descobrir qual código deve ser usado ("ex: " .mean() calcula a média")
+* **Escrever o código você mesmo!**
+
