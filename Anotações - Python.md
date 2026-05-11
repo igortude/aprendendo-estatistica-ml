@@ -235,7 +235,7 @@ Estatística
 ```
 "Qual é a média dos salários?"
 "Qual é o desvio padrão?"
-"Qual é a correlação entre X e Y?"
+"Qual lé a correlação entre X e Y?"
 ```
 
 Código
@@ -255,3 +255,136 @@ Então, dicas:
 * Descobrir qual código deve ser usado ("ex: " .mean() calcula a média")
 * **Escrever o código você mesmo!**
 
+
+
+**AGRUPAMENTOS** - Analisando por categorias
+
+> Você tem 1000 funcionários de vários países. Como saber "Qual é o salário médio por país?"
+>
+> * groupby
+>
+>   ```
+>   df.groupby('Country')['Salary_USD'].mean()
+>   ```
+>
+>   desmembrando:
+>
+>   * groupby('Country') - "separe os dados por país"
+>
+>     GRUPO USA:		[120000,	110000,	95000]
+>
+>     GRUPO Canada:	[80000,	90000]
+>
+>     GRUPO India:	[45000,	50000,	48000]
+>
+>   * ['Salary_USD'] - "De cada grupo, selecione a coluna salário"
+>
+>   * .mean() - "Calcule a média de cada grupo"
+>
+>     Resultado:
+>
+>     ```
+>     Country
+>     USA			108333.33
+>     Canada		85000.00
+>     India		47666.67
+>     ```
+
+​	Alguns outros exemplos úteis
+
+* df.groupby('Country').size()				# Quantos funcionários por país?
+* df.groupby('Country')['Salary_USD'].max()       # Qual o salário máximo por país?
+* df.groupby('Country')['Salary_USD'].agg(['mean', 'max', 'min', 'count'])        #várias estatísticas 
+
+
+
+**Porque o groupby é super interessante?**
+
+Porque responde inúmeras perguntas que você vai se fazer ao montar um dashboard por exemplo.
+
+1. Qual cargo paga melhor?
+2. Em que país se ganha mais?
+3. Quantas pessoas temos por área?
+
+**FILTRO**
+
+Filtro é um filtro. Não tem muito o que falar a respeito da definição. Contudo, há algumas formas de fazer um filtro e isso é importante, ter a forma com que estes filtros são feitos.
+
+* **Filtro Simples**
+
+  * Quero que liste somente quem ganha mais do que R$ 80.000.
+
+    ```
+    df[df['Salario'] > 80000]
+    ```
+
+​		E porque? Porque só a condição df['Salario'] > 80000 , retornaria uma lista de true/false, o que não é o que queremos! Então, como queremos os dados da tabela que preenchem a condição, utilizamos df[df['COLUNA'] condição]
+
+* **Filtro Múltiplo**
+
+  * Nada tão diferente, porém, **vale se atentar que as condições ficam dentro de ()**:
+
+    ```
+    Eu quero ver os funcionários de TI que ganham acima de 90.000
+    
+    df[
+    (df['Departamento'] == 'TI') &
+    (df['Salario'] > 90000)
+    ]
+    ```
+
+    Neste caso, utilizamos & que implica em ambas as condições serem **TRUE**. Se fosse um **OU**, utilizaríamos uma **|** que resultaria em pelo menos uma condição verdadeira.
+
+Então, pode estar se perguntando:
+
+**QUANDO USAR GROUPBY / FILTRO?**
+
+* **Use FILTRO quando:**
+
+  * Você quer linhas específicas:
+
+    * "Mostre só os managers;"
+
+    * "Mostre só quem ganha acima de 80000;"
+
+      
+
+* **Use GROUPBY quando:**
+
+  * Quando quiser calcular por CATEGORIA:
+    * "Qual o salário médio por departamento?"
+    * "Quantas pessoas há em cada cargo?"
+
+
+
+**As funções mais utilizadas com o groupby:**
+
+* mean()	#média
+* std()             #desvio-padrão
+* min()            #valor mínimo
+* max()           #valor máximo
+* size()            #quantidade de itens
+* count()         #conta valores não-nulos (ignora NaN)
+* sum()           #soma total
+* median()     #mediana (valor do meio)
+* nunique()    #quantos valores únicos
+* first()            #primeiro valor do grupo
+* last()             #último valor do grupo
+
+​	agg()	    #várias estatísticas de uma única vez
+
+```
+df.groupby('Departamento')['Salario'].agg(['mean', 'max', 'min', 'count'])
+
+              mean      max     min   count
+Departamento                              
+TI           96667   120000   75000     3
+Vendas       87500   110000   65000     2
+```
+
+Resumindo:
+
+O GROUPBY faz 2 coisas:
+
+* Agrupa os dados por categoria
+* Calcula alguma coisa para cada grupo
