@@ -524,7 +524,7 @@ bargraph = df_vendas.groupby('Mes')['Valor_Venda'].sum()
 
 plt.bar(bargraph.index, bargraph.values, color='black')
 
-plt.title('Melhor Mês de Vendas')
+plt.title('Valor em R$')
 
 plt.xlabel('Mês')
 
