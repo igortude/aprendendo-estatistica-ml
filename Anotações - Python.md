@@ -384,7 +384,154 @@ Vendas       87500   110000   65000     2
 
 Resumindo:
 
-O GROUPBY faz 2 coisas:
+O **GROUPBY** faz 2 coisas:
 
 * Agrupa os dados por categoria
 * Calcula alguma coisa para cada grupo
+
+
+
+**MATPLOTLIB**
+
+Agora, vamos começar com o que você enxerga! Porque de uma forma ou de outra, criar tabelas, é importante, porém, demonstrar os dados com gráficos é ***muito*** mais interessante e legível.
+
+```
+import matplotlib.pyplot as plt
+```
+
+Existem inúmeros tipos de gráficos! Vamos começar com o:
+
+* Histograma
+
+  * Como os salários são distribuídos? 
+
+  * A maioria ganha muito ou pouco?
+
+    * O histograma responde esse tipo de pergunta! Ele é perfeito porque mostra a frequência dos valores
+
+    ```
+    # Criando o histograma dos salários
+    plt.hist(df['Salario'], bins=5)
+    ```
+
+    ​	'bins', é o número de "barras".
+
+    ```
+    # Adicionando títulos, para ficar profissional
+    plt.title('Distribuição de Salários na Empresa')
+    plt.xlabel('Faixa Salarial (USD)')
+    plt.ylabel('Número de Funcionários')
+    
+    # Imprimindo o gráfico na tela
+    plt.show()
+    ```
+
+    Em outras palavras, o Matplotlib pega todos os salários, divide em 5 "caixas" (bins) e conta quantos funcionários caem em cada caixa, desenhando uma barra para cada uma.
+
+* Barras
+
+  * Qual o salário médio por departamento?
+
+    
+
+    Vamos fazer isso aos poucos! Separadamente, para que fique bem compreendido.
+
+    ```
+    # 1º, pegamos os dados que queremos plotar!
+    media_por_depto = df.groupby('Departamento')['Salario'].mean()
+    
+    # Neste caso, o resultado de 'media_por_depto' é:
+    # Departamento
+    # TI	96666.67
+    # Vendas 87500.00
+    ```
+
+​		Depois, vamos desenhar o gráfico de barras com o Matplotlib
+
+```
+# Cria-se o gráfico de barras
+# Eixo X: São os nomes dos departamentos (o índice)
+# Eixo Y: Os valores das médias (os valores)
+plt.bar(media_por_depto.index, media_por_depto.values, color='skyblue')
+
+# Adiciona-se os títulos
+plt.title('Salário Médio por Departamento')
+plt.xlabel('Departamento')
+plt.ylabel('Salário Médio (USD)')
+
+# Mostra o gráfico
+plt.show()
+```
+
+Ou seja, o **Pandas**, prepara os dados! Já o **Matplotlib** desenha os gráficos.
+
+
+
+import matplotlib.pyplot as plt
+
+
+
+salario_max = df.groupby('Cargo')['Salario'].max()
+
+plt.bar(salario_max.index, salario_max.values, color='skyblue')
+
+plt.title('Salário Máximo por Cargo')
+plt.xlabel('Salário Máximo')
+plt.ylabel('Cargo')
+
+plt.show()
+
+
+
+___
+
+Um exercício básico para treinar.
+Utilizando o DataFrame:
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+\# DataFrame com dados de vendas
+
+df_vendas = pd.DataFrame({
+
+​    'Vendedor': ['Ana', 'Bruno', 'Carla', 'Diego', 'Elena', 'Fernando', 
+
+​                 'Ana', 'Bruno', 'Carla', 'Diego', 'Elena', 'Fernando'],
+
+​    'Produto': ['Notebook', 'Mouse', 'Teclado', 'Monitor', 'Notebook', 'Mouse',
+
+​                'Teclado', 'Monitor', 'Mouse', 'Notebook', 'Teclado', 'Monitor'],
+
+​    'Categoria': ['Eletrônicos', 'Acessórios', 'Acessórios', 'Eletrônicos', 
+
+​                  'Eletrônicos', 'Acessórios', 'Acessórios', 'Eletrônicos',
+
+​                  'Acessórios', 'Eletrônicos', 'Acessórios', 'Eletrônicos'],
+
+​    'Valor_Venda': [2500, 50, 150, 800, 2200, 45, 120, 750, 55, 2800, 130, 820],
+
+​    'Mes': ['Jan', 'Jan', 'Jan', 'Fev', 'Fev', 'Fev', 'Mar', 'Mar', 'Mar', 'Abr', 'Abr', 'Abr']
+
+})
+
+```
+Qual o mês que mais vendeu? Construa o gráfico.
+```
+
+bargraph = df_vendas.groupby('Mes')['Valor_Venda'].sum()
+
+plt.bar(bargraph.index, bargraph.values, color='black')
+
+plt.title('Melhor Mês de Vendas')
+
+plt.xlabel('Mês')
+
+plt.ylabel('Quantidade')
+
+plt.show()
+
+
+
+![grafico](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/xx1.png)
