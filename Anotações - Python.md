@@ -535,3 +535,312 @@ plt.show()
 
 
 ![grafico](https://github.com/igortude/aprendendo-estatistica-ml/blob/main/assets/xx1.png)
+
+Conseguimos verificar a disposição dos dados de forma correta, até porque o DataFrame utilizado está limpo! Ou seja, não está bagunçado (sujo), o que facilita demais! E no final das contas, é o que precisa ser feito, sempre que se começar a trabalhar com um DataFrame. 
+
+**Analisar e Padronizar!**
+
+
+
+Agora, vamos para um DataFrame bagunçado (SUJO).
+
+```
+import pandas as pd
+import numpy as np
+
+# Simulando dados bagunçados de verdade
+dados_sujos = pd.DataFrame({
+    'nome': ['João Silva', 'maria santos', 'PEDRO COSTA', 'Ana Oliveira', 'joão silva', 
+             'Maria Santos', '', 'Carlos Lima', 'ana oliveira', 'Pedro Costa'],
+    'departamento': ['TI', 'vendas', 'TI', 'RH', 'ti', 'Vendas', 'Marketing', 'TI', 'rh', ''],
+    'salario': ['5000', '3500', 'R$ 7000', '4200', '5000', '3500', '', '6000', '4200', '7000'],
+    'idade': [25, 30, '', 28, 25, 30, 22, 35, 28, 45],
+    'email': ['joao@empresa.com', 'maria@empresa.com', 'pedro@empresa.com', '', 
+              'joao@empresa.com', 'maria2@empresa.com', 'carlos@empresa.com', 
+              'carlos@empresa.com', 'ana@empresa.com', 'pedro@empresa.com']
+})
+
+print("DADOS ORIGINAIS (BAGUNÇADOS):")
+print(dados_sujos)
+```
+
+O que é que se consegue identificar ?
+
+Nomes, maiúsculas, minúsculas, valores vazios, repetição de dados, etc... 
+
+Ou seja, é interessante verificar tudo isso! E como podemos começar ?
+
+```
+dados_sujos.info()
+
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 5 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   nome          10 non-null     object
+ 1   departamento  10 non-null     object
+ 2   salario       10 non-null     object
+ 3   idade         10 non-null     object
+ 4   email         10 non-null     object
+dtypes: object(5)
+memory usage: 532.0+ bytes
+```
+
+e também:
+
+```
+dados_sujos.describe()
+
+		nome	departamento	salario	idade	email
+count	10				10			10		10		10
+unique	10				8			7		7		7
+top		João Silva		TI			5000	25		joao@empresa.com
+freq	1				3			2		2		2
+
+```
+
+Ou seja, há muita bagunça, certo? 
+
+Agora, execute:
+
+```
+print("=== INFORMAÇÕES GERAIS ===")
+dados_sujos.info()
+
+print("\n=== VALORES ÚNICOS POR COLUNA ===")
+for coluna in dados_sujos.columns:
+    print(f"{coluna}: {dados_sujos[coluna].nunique()} valores únicos")
+    
+print("\n=== VERIFICANDO NULOS ===")
+print(dados_sujos.isnull().sum())
+
+print("\n=== PRIMEIRAS 5 LINHAS ===")
+print(dados_sujos.head())
+
+=== INFORMAÇÕES GERAIS ===
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 5 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   nome          10 non-null     object
+ 1   departamento  10 non-null     object
+ 2   salario       10 non-null     object
+ 3   idade         10 non-null     object
+ 4   email         10 non-null     object
+dtypes: object(5)
+memory usage: 532.0+ bytes
+
+=== VALORES ÚNICOS POR COLUNA ===
+nome: 10 valores únicos
+departamento: 8 valores únicos
+salario: 7 valores únicos
+idade: 7 valores únicos
+email: 7 valores únicos
+
+=== VERIFICANDO NULOS ===
+nome            0
+departamento    0
+salario         0
+idade           0
+email           0
+dtype: int64
+
+=== PRIMEIRAS 5 LINHAS ===
+           nome departamento  salario idade              email
+0    João Silva           TI     5000    25   joao@empresa.com
+1  maria santos       vendas     3500    30  maria@empresa.com
+2   PEDRO COSTA           TI  R$ 7000        pedro@empresa.com
+3  Ana Oliveira           RH     4200    28                   
+4    joão silva           ti     5000    25   joao@empresa.com
+```
+
+Olhe que **beleza**... Vamos começar a arrumar tudo!
+
+Até porque, se temos 10 linhas no dataset e há pessoas repetidas, deveria ter menos de 10 valores únicos em algumas colunas.
+
+```
+# Vamos investigar os nomes únicos
+print("NOMES 'ÚNICOS' SEGUNDO O PANDAS:")
+print(dados_sujos['nome'].unique())
+
+NOMES 'ÚNICOS' SEGUNDO O PANDAS:
+['João Silva' 'maria santos' 'PEDRO COSTA' 'Ana Oliveira' 'joão silva'
+ 'Maria Santos' '' 'Carlos Lima' 'ana oliveira' 'Pedro Costa']
+```
+
+O Pandas considera 'João Silva' e 'joão silva', duas pessoas diferentes; 
+
+```A mesma coisa acontece com o Departamento, 'TI' e 'ti'
+print("DEPARTAMENTOS 'ÚNICOS':")
+print(dados_sujos['departamento'].unique())
+```
+
+A mesma coisa acontece com o Departamento, 'TI' e 'ti'
+
+Na verdade, são só 4 departamentos, mas por causa da 'não padronização', o Pandas, enxerga como diferentes.
+
+Quando se percebe valores únicos demais, **dados inconsistentes**. Quando se vê valores únicos de menos, há possíveis **duplicatas**.
+
+```
+# CHECKLIST INICIAL - Limpeza de DADOS
+```
+
+**Passo 1: Padronização do Texto**
+
+* ***Problema***: Maiúsculas, Minúsculas bagunçadas
+* **SOLUÇÃO**: .str do Pandas
+
+Vamos explorar um pouco essa nova função:
+
+```
+# .str.lower() = tudo minúsculo
+dados_sujos['nome'].str.lower()
+
+# .str.upper() = tudo maiúsculo
+dados_sujos['nome'].str.upper()
+
+# .str.title() = Primeiras Letras Maiúsculas
+dados_sujos['nome'].str.title()
+
+# .str.strip() = remove espaços das pontas
+dados_sujos['nome'].str.strip()
+```
+
+Agora verifique:
+
+```
+dados_sujos['nome'].str.title()
+
+#NOMES TRATADOS
+nome
+0	João Silva
+1	Maria Santos
+2	Pedro Costa
+3	Ana Oliveira
+4	João Silva
+5	Maria Santos
+6	
+7	Carlos Lima
+8	Ana Oliveira
+9	Pedro Costa
+
+dtype: object
+```
+
+E aí, você deve estar se perguntando... E como eu salvo isso? É simples!
+
+basta adicionar 'dados_sujos['nome'] ='
+
+```
+dados_sujos['nome'] = dados_sujos['nome'].str.title()
+```
+
+Sem o 'dados_sujos['nome'] =' Servirá somente para a sua visualização.
+
+logo, se você aplica o mesmo para a coluna de departamentos, tudo começa a ficar mais claro e possível de análise.
+
+então, vamos lá!
+
+```
+dados_sujos['nome'] = dados_sujos['nome'].str.title()
+dados_sujos['departamento'] = dados_sujos['departamento'].str.upper()
+
+print(dados_sujos)
+
+           nome departamento  salario idade               email
+0    João Silva           TI     5000    25    joao@empresa.com
+1  Maria Santos       VENDAS     3500    30   maria@empresa.com
+2   Pedro Costa           TI  R$ 7000         pedro@empresa.com
+3  Ana Oliveira           RH     4200    28                    
+4    João Silva           TI     5000    25    joao@empresa.com
+5  Maria Santos       VENDAS     3500    30  maria2@empresa.com
+6                  MARKETING             22  carlos@empresa.com
+7   Carlos Lima           TI     6000    35  carlos@empresa.com
+8  Ana Oliveira           RH     4200    28     ana@empresa.com
+9   Pedro Costa                  7000    45   pedro@empresa.com
+```
+
+e para verificação:
+
+``` 
+print("\n=== VALORES ÚNICOS POR COLUNA ===")
+for coluna in dados_sujos.columns:
+	print(f"{coluna}: {dados_sujos[coluna].nunique()} valore únicos")
+	
+=== VALORES ÚNICOS POR COLUNA ===
+nome: 6 valores únicos
+departamento: 5 valores únicos
+salario: 7 valores únicos
+idade: 7 valores únicos
+email: 7 valores únicos
+```
+
+O Pandas já conseguiu identificar as mudanças. E agora, passamos para a **conversão de texto para número** (inteiro)
+
+**PASSO 2: CONVERSÃO DE TEXTO EM NÚMERO**
+
+***PROBLEMA***: Os salários não estão com valores padronizados (R$ 5000, 7000..)
+
+**SOLUÇÃO**: Remover os caracteres e converter o tipo
+
+```
+# .str.replace() = substitui um texto por outro
+dados_sujos['salario'].str.replace('R$ ', '')
+
+# .str.replace() com regex para remover qualquer caractere não-numérico
+dados_sujos['salario'].str.replace('[^0-9]', '', regex=True)
+
+# pd.to_numeric() = converte para número
+pd.to_numeric(dados_sujos['salario'])
+```
+
+Vamos primeiro investigar!
+
+```
+print("SALÁRIOS ORIGINAIS:")
+print(dados_sujos['salario'])
+print("Tipo da coluna:", dados_sujos['salario'].dtype)
+
+print("\nAPÓS REMOVER 'R$ ':")
+print(dados_sujos['salario'].str.replace('R$ ', ''))
+```
+
+```
+Salários
+0       5000
+1       3500
+2    R$ 7000
+3       4200
+4       5000
+5       3500
+6           
+7       6000
+8       4200
+9       7000
+Name: salario, dtype: object
+Tipo da coluna: object
+
+Após Remoção: 
+salario
+0	5000
+1	3500
+2	7000
+3	4200
+4	5000
+5	3500
+6	
+7	6000
+8	4200
+9	7000
+
+dtype: object
+```
+
+Tudo excelente agora! Só é necessário lembrar de salvar a substituição:
+
+```
+dados_sujos['salario'] = dados_sujos['salario'].str.replace('R$ ', '')
+```
+
