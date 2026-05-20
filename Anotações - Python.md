@@ -844,3 +844,176 @@ Tudo excelente agora! Só é necessário lembrar de salvar a substituição:
 dados_sujos['salario'] = dados_sujos['salario'].str.replace('R$ ', '')
 ```
 
+Agora, estamos próximos de concluir a limpeza! E porque? Porque removemos o 'R$', mas o tipo ainda não é numérico! Ou seja, precisamos de uma função do Pandas para que a coluna, seja do tipo numérico. E como fazer isso:
+
+```
+dados_sujos['salario'] = pd.to_numeric(dados_sujos['salario'], erros='coerce')
+```
+
+agora vamos detalhas!
+
+* dados_sujos['salario'] 
+
+  * pd.to_numeric(dados_sujos['salario']) = CAST
+  * errors='coerce' = caso dê qualquer erro no cast, ele atribui 'NaN' (NotaNumber) e segue com o cast. No final das contas, é para impedir que um erro, possa interromper a conversão.
+
+  
+
+Agora vamos a uma reflexão importante!
+
+**📞 QUANDO CONTACTAR vs QUANDO NÃO CONTACTAR**
+
+## **QUANDO É APROPRIADO CONTACTAR:**
+
+✅ **Dataset pequeno** (como o nosso - 10 pessoas)
+✅ **Dados críticos** para decisões importantes
+✅ **Você tem acesso** aos responsáveis pelos dados
+✅ **Tempo disponível** para correção
+✅ **Dados recentes** (pessoas ainda disponíveis)
+
+## **QUANDO NÃO É VIÁVEL:**
+
+❌ **Dataset gigante** (milhões de linhas)
+❌ **Dados antigos** (pessoal pode ter mudado)
+❌ **Análise exploratória** (só queremos entender padrões)
+❌ **Prazo apertado**
+❌ **Dados sensíveis** (privacidade)
+
+### **CENÁRIO 1: RH da empresa (10 funcionários)**
+
+→ **SIM, contacte!** É fácil e os dados são críticos
+
+### **CENÁRIO 2: Vendas de e-commerce (100.000 clientes)**
+
+→ **NÃO contacte!** Use técnicas estatísticas
+
+### **CENÁRIO 3: Pesquisa científica**
+
+→ **DEPENDE** - se for crítico para conclusão, sim
+
+
+
+Agora, tratando de limpeza d e dados, é necessário levar em consideração duas formas de remover dados, porque se você tem um dataset com 20 linhas, você consegue verificar uma por uma até encontrar e resolver tudo, porém, imagine um dataset com 100000 linhas e que você não tem certas colunas preenchidas. O que fazer? 
+
+No mundo real, vamos tratar os dados faltantes da forma que for mais plausível ao caso concreto. Porque? Imagine que você tenha tempo para procurar o responsável por esse preenchimento, RH, por exemplo e fazer a solicitação. Isso seria o melhor dos casos. Acontece? Quase nunca! Porque, primeiro porque um dataset com 20 linhas é algo inimaginável. Segundo que quase nunca se tem tempo para esse tratamento. Então, o que é feito no final das contas? Preenchimento dos dados, média dos dados e por aí vai. 
+
+Para ser muito simples e direto, o que faremos, será a remoção de linhas que estão incompletas e isso, implica em 2 formas de ação:
+
+1) **Pandas Padrão (mantendo os índices originais)**
+
+   * Isso significa que ao remover os índices incompletos, a fila não é ''reajustada'', ou seja, se temos índices de 0 a 9, se você remove o índice 1, a contagem seria: 0, 2, 3, 4, 5, 6, 7, 8, 9. 
+
+     ```
+     # DataFrame original - copiando o dataframe (backup)
+     dados_originais = dados_sujos.copy()
+     
+     # Removendo as linhas 3 e 4
+     dados_forma1 = dados_originais.drop([3, 4])
+     
+     print(dados_forma1['nome', 'salario'])	           nome departamento  salario idade               email
+     0    João Silva           TI   5000.0    25    joao@empresa.com
+     1  Maria Santos       VENDAS   3500.0    30   maria@empresa.com
+     2  Maria Santos       VENDAS   3500.0    30  maria2@empresa.com
+     3   Carlos Lima           TI   6000.0    35  carlos@empresa.com
+     4  Ana Oliveira           RH   4200.0    28     ana@empresa.com
+     5   Pedro Costa           TI   7000.0    45   pedro@empresa.com
+     ```
+
+     **Resultado (APÓS REMOÇÃO)**
+
+     ```
+     ANTES:                    APÓS REMOÇÃO:
+     0  João Silva   5000      0  João Silva   5000
+     1  Maria Santos 3500      1  Maria Santos 3500  
+     2  Pedro Costa  NaN       2  Pedro Costa  NaN
+     3  Ana Oliveira 4200  ←   5  Maria Santos 3500  ← Pulou para 5!
+     4  João Silva   5000  ←   6  ""           NaN   ← Pulou para 6!
+     5  Maria Santos 3500      7  Carlos Lima  6000  ← Pulou para 7!
+     6  ""           NaN       8  Ana Oliveira 4200  ← Pulou para 8!
+     7  Carlos Lima  6000      9  Pedro Costa  7000  ← Pulou para 9!
+     8  Ana Oliveira 4200
+     9  Pedro Costa  7000
+     ```
+
+     *Uma comparação do ANTES e APÓS REMOÇÃO*
+
+2. **Redistribuição** (**reset_index**)
+
+   ```
+   # Continua fazendo o backup dos dados
+   dados_originais = dados_sujos.copy()
+   
+   # Removendo as linhas 3 e 4 e resentando os índices
+   dados_forma2 = dados.originais.drop([3, 4]).reset_index(drop=True)
+   ```
+
+   **Resultado (APÓS REMOÇÃO)**
+
+   ```
+   ANTES:                    APÓS REMOÇÃO:
+   0  João Silva   5000      0  João Silva   5000
+   1  Maria Santos 3500      1  Maria Santos 3500  
+   2  Pedro Costa  NaN       2  Pedro Costa  NaN
+   3  Ana Oliveira 4200  ←   5  Maria Santos 3500  ← Pulou para 5!
+   4  João Silva   5000  ←   6  ""           NaN   ← Pulou para 6!
+   5  Maria Santos 3500      7  Carlos Lima  6000  ← Pulou para 7!
+   6  ""           NaN       8  Ana Oliveira 4200  ← Pulou para 8!
+   7  Carlos Lima  6000      9  Pedro Costa  7000  ← Pulou para 9!
+   8  Ana Oliveira 4200
+   9  Pedro Costa  7000
+   ```
+
+   *Uma comparação do ANTES e APÓS REMOÇÃO*
+
+## **🏢 QUAL USAR NO MUNDO REAL?**
+
+### **FORMA 1 (sem reset) - MAIS COMUM:**
+
+✅ **Quando:** Análise rápida, filtros temporários
+✅ **Vantagem:** Mantém "rastro" dos dados originais
+✅ **Uso:** 80% dos casos
+
+### **FORMA 2 (com reset) - QUANDO NECESSÁRIO:**
+
+✅ **Quando:** Vai exportar dados, fazer loops, precisar de sequência
+✅ **Vantagem:** Índices "limpos" e sequenciais
+✅ **Uso:** 20% dos casos, mas importantes
+
+Aqui, faremos o mais difícil! Vamos utilizar o reset_index. Pelo simples fato de ser um dataset bem pequeno e aproveitando, vamos atribuir o 'TI' para o Pedro Costa, que até então, estava duplicado, porém, sem o departamento.
+
+ANTES:
+
+```
+           nome departamento  salario idade               email departamentos
+0    João Silva           TI   5000.0    25    joao@empresa.com            TI
+1  Maria Santos       VENDAS   3500.0    30   maria@empresa.com        VENDAS
+2   Pedro Costa           TI   7000.0         pedro@empresa.com            TI
+3  Ana Oliveira           RH   4200.0    28                                RH
+4    João Silva           TI   5000.0    25    joao@empresa.com            TI
+5  Maria Santos       VENDAS   3500.0    30  maria2@empresa.com        VENDAS
+6                  MARKETING      NaN    22  carlos@empresa.com     MARKETING
+7   Carlos Lima           TI   6000.0    35  carlos@empresa.com            TI
+8  Ana Oliveira           RH   4200.0    28     ana@empresa.com            RH
+9   Pedro Costa                7000.0    45   pedro@empresa.com              
+```
+
+e DEPOIS, com as devidas correções:
+
+```
+# Primeiro um backup do dataset
+dados_limpos = dados_sujos.copy()
+
+# remoção das linhas e reset de index
+dados_limpos.drop([2, 3, 4, 6]).reset_index(drop=True)
+
+print(dados_limpos)
+
+           nome departamento  salario idade               email
+0    João Silva           TI   5000.0    25    joao@empresa.com
+1  Maria Santos       VENDAS   3500.0    30   maria@empresa.com
+2  Maria Santos       VENDAS   3500.0    30  maria2@empresa.com
+3   Carlos Lima           TI   6000.0    35  carlos@empresa.com
+4  Ana Oliveira           RH   4200.0    28     ana@empresa.com
+5   Pedro Costa           TI   7000.0    45   pedro@empresa.com
+```
+
